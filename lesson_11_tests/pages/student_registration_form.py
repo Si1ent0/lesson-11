@@ -1,4 +1,5 @@
 import os
+from lesson_11_tests import resource
 
 from selene import browser, be, have
 from lesson_11_tests.data import users
@@ -77,8 +78,7 @@ class StudentRegistrationFormPage:
         self.hobbies_checkbox.click()
 
     def upload_img(self, value):
-        self.send_upload_img.should(be.clickable)
-        self.send_upload_img.send_keys(os.path.abspath(value))
+        self.send_upload_img.should(be.visible).type(resource.path(value))
 
     def fill_address(self,address, country, city):
         self.address.should(be.blank).type(address)

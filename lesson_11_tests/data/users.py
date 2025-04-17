@@ -17,7 +17,7 @@ class User:
 new_user = User(first_name='Egor', last_name='Letov', email='Letov_Perestroyka@home.ru',
             mobile='8123456789',
             subjects='Song and music',
-            img='resources/ava.png',
+            img='ava.png',
             address='Brighton Beach New York City',
             country='NCR',
             city='Delhi',
