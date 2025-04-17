@@ -77,6 +77,7 @@ class StudentRegistrationFormPage:
         self.hobbies_checkbox.click()
 
     def upload_img(self, value):
+        self.send_upload_img.should(be.clickable)
         self.send_upload_img.send_keys(os.path.abspath(value))
 
     def fill_address(self,address, country, city):
