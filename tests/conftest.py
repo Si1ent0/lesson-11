@@ -31,7 +31,7 @@ def browser_config(request):
     options.capabilities.update(selenoid_capabilities)
 
     driver = webdriver.Remote(
-        command_executor=f"http://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub",
+        command_executor=f'http://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub',
         options=options
     )
 
