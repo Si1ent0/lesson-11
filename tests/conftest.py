@@ -19,7 +19,6 @@ def browser_config(request):
     selenoid_login = os.getenv("SELENOID_LOGIN")
     selenoid_pass = os.getenv("SELENOID_PASS")
     selenoid_url = os.getenv("SELENOID_URL")
-    print(f'http://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub')
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
