@@ -110,6 +110,9 @@ class StudentRegistrationFormPage:
     def close_success_pop_up(self):
         self.button_close_pop_up.click()
 
+    def remove_baner_footer(self):
+        browser.driver.execute_script("$('#fixedban').remove()")
+        browser.driver.execute_script("$('footer').remove()")
 
     def new_student_registration(self, user: User):
         # Заполнение полей формы
