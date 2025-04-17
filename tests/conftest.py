@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
 
+from utils import attach
+
 @pytest.fixture(scope='function')
 def browser_config(request):
     options = Options()
@@ -24,5 +26,10 @@ def browser_config(request):
 
     browser = Browser(Config(driver=driver))
     yield browser
+
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_html(browser)
+    attach.add_video(browser)
 
     browser.quit()
