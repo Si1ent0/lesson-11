@@ -3,7 +3,6 @@ import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# from selene import Browser, Config
 from selene import browser
 
 
@@ -42,6 +41,7 @@ def browser_config(request):
     browser.config.driver=driver
     browser.config.window_height = 1080
     browser.config.window_width = 1920
+    browser.config.base_url = "https://demoqa.com"
     yield browser
 
     attach.add_screenshot(browser)

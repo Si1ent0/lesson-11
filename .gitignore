@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Настройка папки на мак
+.DS_Store
+
+# Allure
+/tests/allure-results
+allure-results/

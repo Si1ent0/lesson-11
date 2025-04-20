@@ -1,4 +1,6 @@
-import os
+
+import allure
+
 from lesson_11_tests import resource
 
 from selene import browser, be, have
@@ -43,24 +45,31 @@ class StudentRegistrationFormPage:
         # Кнопка закрытия окна об успешной регистрации
         self.button_close_pop_up = browser.element('#closeLargeModal')
 
+    @allure.step("Открываем главную страницу")
     def open_stud_reg_page(self):
-        browser.open('https://demoqa.com/automation-practice-form')
+        browser.open('/automation-practice-form')
 
+    @allure.step("Вводим имя")
     def fill_first_name(self, value):
         self.first_name.should(be.blank).type(value)
 
+    @allure.step("Вводим фамилию")
     def fill_last_name(self, value):
         self.last_name.should(be.blank).type(value)
 
+    @allure.step("Вводим email")
     def fill_email(self, value):
         self.email.should(be.blank).type(value)
 
+    @allure.step("Выбираем пол")
     def select_gender(self):
         self.gender.click()
 
+    @allure.step("Вводим телефон")
     def fill_user_number(self, value):
         self.user_number.should(be.blank).type(value)
 
+    @allure.step("Указываем дату рождения")
     def fill_date_of_birth(self):
         self.birthdate_form.click()
         self.month_cont.should(be.visible)
@@ -70,28 +79,35 @@ class StudentRegistrationFormPage:
         self.year.click()
         self.day_select.click()
 
+    @allure.step("Вводим описание")
     def fill_subject(self, value):
         self.subject_cont.click()
         self.subject_input.should(be.blank).type(value)
 
+    @allure.step("Выбираем хобби")
     def hobby_select(self):
         self.hobbies_checkbox.click()
 
+    @allure.step("Передаем изображение")
     def upload_img(self, value):
         self.send_upload_img.should(be.visible).type(resource.path(value))
 
+    @allure.step("Вводим адрес")
     def fill_address(self,address, country, city):
         self.address.should(be.blank).type(address)
         self.country.set_value(country).press_tab()
         self.city.set_value(city).press_tab()
 
+    @allure.step("Отправляем форму")
     def submit_form(self):
         self.submit_button.click()
 
+    @allure.step("Проверяем окно успешной отправки")
     def success_form(self, value ):
         self.send_popup.should(be.visible)
         self.success_submit_text.should(have.text(value))
 
+    @allure.step("Проверяем наличие переданных данных ")
     def should_registered_user_with(self):
         browser.element('.table').all('tr').should(have.exact_texts(
             user_info.label_values,
@@ -108,13 +124,16 @@ class StudentRegistrationFormPage:
             )
         )
 
+    @allure.step("Закрываем окно успешной отправки")
     def close_success_pop_up(self):
         self.button_close_pop_up.click()
 
+    @allure.step("Удаляем банеры")
     def remove_baner_footer(self):
         browser.driver.execute_script("$('#fixedban').remove()")
         browser.driver.execute_script("$('footer').remove()")
 
+    @allure.step("Выполняем регистрацию студента")
     def new_student_registration(self, user: User):
         # Заполнение полей формы
         self.fill_first_name(user.first_name)
