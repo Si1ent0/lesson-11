@@ -101,6 +101,7 @@ class StudentRegistrationFormPage:
 
     @allure.step("Отправляем форму")
     def submit_form(self):
+        browser.element('#submit').perform(command.js.scroll_into_view)  # прокрутка до элемента
         self.submit_button.click()
 
     @allure.step("Проверяем окно успешной отправки")
