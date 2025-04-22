@@ -1,3 +1,5 @@
+from random import choices
+
 import pytest
 import os
 
@@ -15,17 +17,25 @@ def load_env():
     load_dotenv()
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_version',
+        default='128.0'
+    )
+
+
 @pytest.fixture(scope='function')
 def browser_config(request):
     selenoid_login = os.getenv("SELENOID_LOGIN")
     selenoid_pass = os.getenv("SELENOID_PASS")
     selenoid_url = os.getenv("SELENOID_URL")
 
+    browser_version = request.config.getoption('--browser_version')
     options = Options()
 
     selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "128.0",
+        "browserName": 'chrome',
+        "browserVersion": browser_version,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
