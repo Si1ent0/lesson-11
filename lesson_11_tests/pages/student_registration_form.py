@@ -1,9 +1,10 @@
 
 import allure
+from selenium.webdriver.common.devtools.v135.dom import move_to
 
 from lesson_11_tests import resource
 
-from selene import browser, be, have
+from selene import browser, be, have, command
 from lesson_11_tests.data import users
 from lesson_11_tests.data.users import User
 
@@ -132,6 +133,7 @@ class StudentRegistrationFormPage:
     def remove_baner_footer(self):
         browser.driver.execute_script("$('#fixedban').remove()")
         browser.driver.execute_script("$('footer').remove()")
+        browser.element('#submit').perform(command.js.scroll_into_view)  # прокрутка до элемента
 
     @allure.step("Выполняем регистрацию студента")
     def new_student_registration(self, user: User):
